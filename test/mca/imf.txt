@@ -1,0 +1,14 @@
+0
+chNSC001, chan=0
+chNSC002, chan=1
+sgDNS
+
+1
+chL, chan=0
+chC, chan=1
+chR, chan=2
+chLs, chan=3
+chRs, chan=4
+chCs, chan=5
+sg60
+ggMPg, lang=en

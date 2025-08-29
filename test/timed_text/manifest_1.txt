@@ -1,0 +1,4 @@
+file: text_example.xml.bin
+profile: imsc1/text
+encoding: UTF-8
+languages: en,fr
