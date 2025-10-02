@@ -77,14 +77,6 @@ The build process has been tested on Ubuntu, Debian, MacOS and Windows (Microsof
 
 ### Dependencies
 
-The [libMXF](https://github.com/MarkusPfundstein/dolby-libMXF) and [libMXF++](https://github.com/MarkusPfundstein/dolby-libMXFpp) libraries are required. They are included as git submodules in the `deps/` directory. Run
-
-```bash
-git submodule update --init
-```
-
-to ensure the submodules are available and up-to-date in the working tree.
-
 The [uriparser](https://github.com/uriparser/uriparser) and [expat](https://github.com/libexpat/libexpat) libraries are required. These libraries are typically provided as software packages on Unix-like systems; the Ubuntu / Debian package names are `liburiparser-dev` and `libexpat1-dev`. The libraries are built from the GitHub source when building on Windows using Microsoft Visual Studio C++.
 
 The uuid library (Ubuntu / Debian package name `uuid-dev`) is also required for non-Apple Unix-like systems.
@@ -154,12 +146,6 @@ The Dockerfile contains a **build** and **runtime** layer:
 * **build**: builds and checks the libMXF, libMXF++ and bmx code.
 * **runtime**: provides the commandline tool executables built in the `build` layer.
 
-Ensure that the libMXF and libMXFpp git submodules are available and up-to-date in the `deps/` directory by running,
-
-```bash
-git submodule update --init
-```
-
 The runtime Docker image can be built in the top-level directory using docker build,
 
 ```bash
@@ -204,7 +190,7 @@ This example runs `bmxtranswrap` from input `./sources/in.mxf` to output `./dest
 
 ## Source and Binary Distributions
 
-Source distributions, including dependencies for the Windows build, and Windows binaries are made available in this GitHub repo. Older distributions can be found on [SourceForge](https://sourceforge.net/projects/bmxlib/files/).
+Source distributions, including dependencies for the Windows build, and Windows binaries are made available in this GitHub repo.
 
 Source and binary distributions are generally only created when a new feature is required for creating standard compliant sample files for example, or when a release hasn't been made for a long time.
 
