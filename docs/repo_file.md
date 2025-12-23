@@ -1,10 +1,6 @@
 # Repository File - Mux & Demux
 
-Author: Markus Pfundstein, Felix Nemirovsky
-
 This document shows how to to mux and demux Dolby Repository Files. For demonstration purposes, we will use modified version of the SOL Levante demo files from Netflix. Please refer to section Essence Creation for more information regarding the modifications.
-
-The essence files can be found in the [Dolby Box directory](https://dolby.ent.box.com/folder/223746063813). Please request access from [Markus Pfundstein](markus.pfundstein@dolby.com).
 
 Before following this tutorial, make sure that the Linux binary files (raw2bmx, mxf2raw) are located in your PATH.
 
@@ -159,13 +155,7 @@ The Dolby Vision ISXD file is derived from the Netflix Dolby Vision Authoring XM
 
 We then used a custom written tool to convert the Authoring XML into a Repository XML in which the Global Metadata is wrapped together with the Frame based Metadata. This is the same process that is applied when wrapping Dolby Vision metadata into Quicktime.
 
-The tool can be downloaded [here](https://github.com/MarkusPfundstein/dolby-dvxml2isxd) and we invoked it with the following command:
-
-```
-python -m dv2isxd \
-  -i ~/dolby/SOL_Levante_25fps/sollevante_lp_16b_hdr_p3d65pq_dolbyvision29_25fps.xml \
-  -o essence_in/SolLevante_25fps.isxd
-```
+Please contact Dolby for access to this tool.
 
 ## Development
 
@@ -215,11 +205,11 @@ cmake --build . --config Release
 
 The Repository File is essentially a AS11 compatible OP1A MXF. This means that we have 1 Material Package and 1 File Package and there are no cuts in any of the tracks.
 
-Our muxer is a modified version of the BMX software developed and maintained by the BBC. Our fork has some changes that make it non-compatible with the MASTER branch of BBC. We plan to iron them out so that we can contribute back to the Open Source software. The major additions that we have made are support for IAB and ISXD muxing.
+Our muxer is a modified version of the BMX software developed and maintained by the BBC. Our fork has some changes that make it non-compatible with the MASTER branch of BBC. The major additions that we have made are support for IAB and ISXD muxing.
 
 ### Essence ULs in Canal+ Repository File
 
-As of writing (and coding), the IAB and ISXD standard were still in development. We made use of the following standards to signal different essence.
+We made use of the following standards to signal different essence.
 
 #### XAVC
 
@@ -274,24 +264,4 @@ The Essence Descriptor in the Repository file is the same as defined in the IMF 
 | Essence Type | UL | Description 
 |---------|-------------|---------|
 | IAB Frame Wrapped | 06.0E.2B.34.04.01.01.05.0E.09.06.04.00.00.00.00 | Immersive Audio Coding per SMPTE ST 2098-2 |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
