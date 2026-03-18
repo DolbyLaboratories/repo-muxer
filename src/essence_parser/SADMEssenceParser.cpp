@@ -280,13 +280,10 @@ void SADMEssenceParser::ParseSection(const unsigned char *data,
             BMX_ASSERT(version == 0x00);
 
             // 1 byte
-            uint8_t mMetadataFormat = ReadByte(data, data_size);
-            BMX_ASSERT(mMetadataFormat == METADATA_FORMAT::XML ||
-                       mMetadataFormat == METADATA_FORMAT::GZIP);
-            if (mMetadataFormat != METADATA_FORMAT::XML) {
-                log_error("Only XML supported in s-ADM\n");
-                BMX_ASSERT(false);
-            }
+            uint8_t metadataFormatByte = ReadByte(data, data_size);
+            BMX_ASSERT(metadataFormatByte == METADATA_FORMAT::XML ||
+                       metadataFormatByte == METADATA_FORMAT::GZIP);
+            mMetadataFormat = (METADATA_FORMAT)metadataFormatByte;
 
             mMetadataHeaderParsed = true;
         }
@@ -368,8 +365,8 @@ void SADMEssenceParser::XML_EndElement(void *user_data, const char *qname)
 void SADMEssenceParser::ParseMetadataPayload()
 {
     if (mMetadataFormat == METADATA_FORMAT::GZIP) {
-        // unzip first. for now. throw error
-        throw InvalidDataError("GZIP not supported yet");
+        log_debug("s-ADM: Skipping XML parse for GZIP-compressed metadata\n");
+        return;
     }
     XML_Parser parser = XML_ParserCreate("utf-8");
     XML_SetStartElementHandler(parser, SADMEssenceParser::XML_StartElement);
